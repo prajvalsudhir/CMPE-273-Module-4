@@ -76,6 +76,6 @@ The Order Service catches the connection failure, returns `502 {"error": "Invent
 
 ![Recovery after restart](docs/screenshots/recovery-test.svg)
 
-## Reflection
+## Why are clear service boundaries and data ownership important in a distributed architecture?
 
 Clear service boundaries and data ownership matter because they limit the blast radius of failures and changes. When only the Inventory Service owns stock data, no other service can corrupt it, and an inventory outage degrades to a clear error instead of crashing the whole store. Boundaries also let each service evolve independently. The inventory backend can be rewritten or scaled without touching order logic. In a distributed system where components fail independently, knowing exactly who owns what data is what keeps the system understandable and recoverable.
