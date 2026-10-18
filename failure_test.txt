@@ -1,0 +1,19 @@
+$ curl -X POST http://127.0.0.1:5000/orders -d {"item_id":"book-001","quantity":1,"user_id":"prajval"}
+{
+  "error": "Inventory Service unavailable",
+  "message": "Could not verify item availability. Please try again later."
+}
+HTTP 502
+
+$ # Order Service still alive?
+{
+  "orders": [
+    {
+      "order_id": "ord-1b3a6223",
+      "user_id": "prajval",
+      "item_id": "book-001",
+      "quantity": 2,
+      "status": "created"
+    }
+  ]
+}

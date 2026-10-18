@@ -1,0 +1,2 @@
+# No third-party dependencies. Both services use the Python standard library only.
+# Requires Python 3.8+.

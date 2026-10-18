@@ -1,0 +1,17 @@
+$ # Inventory restarted. Submit order again:
+{
+  "order_id": "ord-9bc254c5",
+  "user_id": "prajval",
+  "item_id": "book-001",
+  "quantity": 1,
+  "status": "created"
+}
+HTTP 201
+
+$ # Out-of-stock item (keyboard-003, stock=0):
+{
+  "error": "Item unavailable",
+  "item_id": "keyboard-003",
+  "stock": 0
+}
+HTTP 409

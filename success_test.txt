@@ -1,0 +1,13 @@
+$ curl "http://127.0.0.1:5001/availability?item_id=book-001&quantity=2"
+{"item_id": "book-001", "requested": 2, "stock": 10, "available": true}
+HTTP 200
+
+$ curl -X POST http://127.0.0.1:5000/orders -d {"item_id":"book-001","quantity":2,"user_id":"prajval"}
+{
+  "order_id": "ord-1b3a6223",
+  "user_id": "prajval",
+  "item_id": "book-001",
+  "quantity": 2,
+  "status": "created"
+}
+HTTP 201

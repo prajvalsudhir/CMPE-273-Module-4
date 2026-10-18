@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="430" viewBox="0 0 920 430" font-family="Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="920" height="430" fill="#ffffff"/>
+
+  <text x="460" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#222">Online Store - Service Architecture</text>
+
+  <!-- Client -->
+  <rect x="40" y="80" width="180" height="90" rx="8" fill="#e8f0fe" stroke="#1a73e8" stroke-width="2"/>
+  <text x="130" y="112" text-anchor="middle" font-size="16" font-weight="bold" fill="#1a73e8">Client</text>
+  <text x="130" y="136" text-anchor="middle" font-size="13" fill="#333">curl / browser</text>
+
+  <!-- Order Service -->
+  <rect x="370" y="80" width="180" height="120" rx="8" fill="#e6f4ea" stroke="#188038" stroke-width="2"/>
+  <text x="460" y="110" text-anchor="middle" font-size="16" font-weight="bold" fill="#188038">Order Service</text>
+  <text x="460" y="132" text-anchor="middle" font-size="13" fill="#333">port 5000</text>
+  <text x="460" y="152" text-anchor="middle" font-size="13" fill="#333">owns: orders</text>
+  <text x="460" y="172" text-anchor="middle" font-size="13" fill="#333">POST /orders</text>
+
+  <!-- Inventory Service -->
+  <rect x="700" y="80" width="180" height="120" rx="8" fill="#fef7e0" stroke="#b06000" stroke-width="2"/>
+  <text x="790" y="110" text-anchor="middle" font-size="16" font-weight="bold" fill="#b06000">Inventory Service</text>
+  <text x="790" y="132" text-anchor="middle" font-size="13" fill="#333">port 5001</text>
+  <text x="790" y="152" text-anchor="middle" font-size="13" fill="#333">owns: stock levels</text>
+  <text x="790" y="172" text-anchor="middle" font-size="13" fill="#333">GET /availability</text>
+
+  <!-- Notification -->
+  <rect x="370" y="290" width="180" height="90" rx="8" fill="#f3e8fd" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="460" y="320" text-anchor="middle" font-size="16" font-weight="bold" fill="#7b1fa2">Notification</text>
+  <text x="460" y="344" text-anchor="middle" font-size="13" fill="#333">event consumer</text>
+  <text x="460" y="362" text-anchor="middle" font-size="13" fill="#333">notifies user</text>
+
+  <!-- Arrow: Client -> Order (Command) -->
+  <line x1="220" y1="110" x2="365" y2="110" stroke="#188038" stroke-width="2" marker-end="url(#arrowG)"/>
+  <text x="292" y="100" text-anchor="middle" font-size="12" fill="#188038">POST /orders (Command)</text>
+
+  <!-- Arrow: Order -> Client (response) -->
+  <line x1="365" y1="130" x2="220" y2="130" stroke="#188038" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrowG)"/>
+  <text x="292" y="150" text-anchor="middle" font-size="12" fill="#188038">201 / 409 / 502</text>
+
+  <!-- Arrow: Order -> Inventory (Query) -->
+  <line x1="550" y1="115" x2="695" y2="115" stroke="#b06000" stroke-width="2" marker-end="url(#arrowO)"/>
+  <text x="622" y="105" text-anchor="middle" font-size="12" fill="#b06000">GET /availability (Query)</text>
+
+  <!-- Arrow: Inventory -> Order (response) -->
+  <line x1="695" y1="140" x2="550" y2="140" stroke="#b06000" stroke-width="1.5" stroke-dasharray="5,4" marker-end="url(#arrowO)"/>
+  <text x="622" y="160" text-anchor="middle" font-size="12" fill="#b06000">available / unavailable</text>
+
+  <!-- Arrow: Order -> Notification (Event) -->
+  <line x1="460" y1="200" x2="460" y2="285" stroke="#7b1fa2" stroke-width="2" marker-end="url(#arrowP)"/>
+  <text x="600" y="245" text-anchor="middle" font-size="12" fill="#7b1fa2">"Order was created" (Event)</text>
+
+  <defs>
+    <marker id="arrowG" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#188038"/>
+    </marker>
+    <marker id="arrowO" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#b06000"/>
+    </marker>
+    <marker id="arrowP" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#7b1fa2"/>
+    </marker>
+  </defs>
+
+  <text x="460" y="415" text-anchor="middle" font-size="12" fill="#555">Order and Inventory run as independent processes and communicate over HTTP (REST).</text>
+</svg>
